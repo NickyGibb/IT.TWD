@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <! - - New line - ->
+<html>
+
+   <head>
+       <title> Rango </title>
+   </head>
+
+   <body>
+       <h1>  Rango says...</h1>
+       <div>
+           this is the about page!<br />
+           <strong>{{ weakmessage}} </strong> <br />
+       </div>
+       <div>
+           <a href="/rango/index/">Index</a> <br />
+           <img src="{%static "images/screamtwo.jpg"%}"
+           alt ="Picture of Cowboy"/> <! - - New line - ->
+           <img src= "{% static "cat.jpg" %}"
+            alt = "cat" /> <! - - New Line - ->
+    
+        </div>   
+   </body>
+
+   </html>
