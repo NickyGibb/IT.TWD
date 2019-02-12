@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-{% load staticfiles %} <html>
+{% extends "rango/base.html" %}
+{% load staticfiles %}
 
-<head>
-  <title>Rango</title>
-</head>
+{% block title %} Welcome to Rango! {% endblock %}
 
-<body>
-  <h1>Rango says...</h1>
-  <div>hey there partner!</div>
+{% block body_block %}
+
+
+  <h1>Rango says "Hey there, partner!"</h1>
+
   <h2> Most Liked Categories</h2>
   <div>
-    {% if categories %} <ul>
+    {% if categories %}
+    <ul>
       {% for category in categories %}
       <li>
         <a href="/rango/category/{{category.slug}}">{{ category.name }}</a>
@@ -47,6 +49,4 @@
     alt ="Picture of Cowboy"/> <! - - New line - ->
 
   </div>
-</body>
-
-</html>
+{% endblock %}
