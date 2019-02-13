@@ -9,7 +9,9 @@ from rango.forms import CategoryForm
 from rango.forms import PageForm
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from datetime import datetime
@@ -122,16 +124,15 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/rango/')
+                return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponse("Your Rango account is disabled")
 
         else:
-            print "Invalid login details: {0}, {1}".format(username,password)
-            context_dict = { 'bad details': "Invalid Login Details supplied"}
-            return render_to_response('rango/login.html', context_dict, context)
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("invalid login details supplied")
     else:
-        return render_to_response('rango/login.html', {}, context)
+        return render(request,'rango/login.html', {})
 
 @login_required
 def restricted(request):
